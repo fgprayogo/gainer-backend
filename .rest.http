@@ -1,0 +1,75 @@
+
+
+
+GET http://127.0.0.1:3333/
+###
+GET http://127.0.0.1:3333/api/global-status
+###
+GET http://127.0.0.1:3333/api/giveaways
+
+
+### GIVE AWAY
+POST http://127.0.0.1:3333/api/giveaways
+Content-Type: application/json
+
+{
+    "wallet_address" : "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+    "email": "energen@gmail.com",
+    "twitter_handle" : "@fgprayogo_twitter",
+    "telegram_handle" : "@fgprayogo_tele"
+}
+
+###
+GET http://127.0.0.1:3333/api/giveaways/0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+
+
+### ADMIN SECTION ###
+POST http://127.0.0.1:3333/api/admin/login
+Content-Type: application/json
+
+{
+    "email" : "fitrohgalih@gmail.com",
+    "password": "password"
+}
+###
+POST http://127.0.0.1:3333/api/admin/update-give-away-status
+Content-Type: application/json
+Authorization: Bearer MQ.VrdvL4Wa-b3F_M92R-0gYcnYloi2Aj1PJjEGML5EynYYdxxFkGSf03y4f9pn
+
+{
+    "wallet_addresses" : [
+        "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "0x70997970C51812dc3A010C7d01b50e0d17dc79C"
+    ]
+}
+
+
+### USER SECTION
+POST http://127.0.0.1:3333/api/user/add-user
+Content-Type: application/json
+
+{
+    "wallet_address" : "1x60997970C51812dc3A010C7d01b50e0d17dc79C",
+    "name" : "GAINER USER 1"
+}
+
+### 
+GET http://127.0.0.1:3333/api/user/1x60997970C51812dc3A010C7d01b50e0d17dc79C
+
+
+### CHAT SECTION
+POST http://127.0.0.1:3333/api/chat/add-chat
+Content-Type: application/json
+
+{
+    "wallet_address" : "1x60997970C51812dc3A010C7d01b50e0d17dc79C",
+    "message" : "This is my message from api 1"
+}
+
+### GAINER ONE TRX
+GET http://127.0.0.1:3333/api/done-trx/gainer-one
+
+### GAINER ONE TRX
+GET http://127.0.0.1:3333/api/done-trx/gainer-five
+### GAINER ONE TRX
+GET http://127.0.0.1:3333/api/done-trx/gainer-ten
