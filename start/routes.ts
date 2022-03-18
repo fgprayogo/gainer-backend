@@ -19,7 +19,9 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-// Route.get('/', "")
+Route.get('/', () => {
+  return 'Connected'
+})
 
 Route.group(() => {
   Route.get('/', 'GiveAwaysController.index')
