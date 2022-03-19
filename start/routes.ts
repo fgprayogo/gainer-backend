@@ -53,4 +53,6 @@ Route.group(() => {
   Route.get('/gainer-one', 'DoneTrxesController.fetchDoneTrxGainerOne')
   Route.get('/gainer-five', 'DoneTrxesController.fetchDoneTrxGainerFive')
   Route.get('/gainer-ten', 'DoneTrxesController.fetchDoneTrxGainerTen')
+  Route.get('/trading-volume-24hr', 'DoneTrxesController.tradingVolume24Hour')
 }).prefix('/api/done-trx')
+

@@ -73,3 +73,6 @@ GET http://127.0.0.1:3333/api/done-trx/gainer-one
 GET http://127.0.0.1:3333/api/done-trx/gainer-five
 ### GAINER ONE TRX
 GET http://127.0.0.1:3333/api/done-trx/gainer-ten
+
+### GAINER ONE TRX
+GET http://127.0.0.1:3333/api/done-trx/trading-volume-24hr

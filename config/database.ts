@@ -43,7 +43,7 @@ const databaseConfig: DatabaseConfig = {
         database: Env.get('MYSQL_DB_NAME'),
       },
       migrations: {
-        disableRollbacksInProduction: true,
+        // disableRollbacksInProduction: true,
         naturalSort: true
       },
       healthCheck: false,

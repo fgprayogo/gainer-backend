@@ -3,6 +3,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import DoneTrxGainerOne from 'App/Models/DoneTrxGainerOne';
 import DoneTrxGainerFive from 'App/Models/DoneTrxGainerFive';
 import DoneTrxGainerTen from 'App/Models/DoneTrxGainerTen';
+import PublicChat from 'App/Models/PublicChat';
 import { ethers } from 'ethers'
 const rpc = 'http://127.0.0.1:8545';
 // const rpc = 'https://polygon-mumbai.g.alchemy.com/v2/BDSfOFYFhvzupg-X_hJa_PQeSh6Lz46F';
@@ -104,5 +105,11 @@ export default class DoneTrxesController {
         }
         const done_trx_gainer_ten = await DoneTrxGainerTen.query().limit(10).orderBy('block_number', 'desc')
         return response.status(200).json({ done_trx_gainer_ten })
+    }
+    public async tradingVolume24Hour({ response }: HttpContextContract) {
+        const now = new Date()
+        const yesterday = new Date(Date.now() - 86400 * 1000).toISOString()
+        const date = await PublicChat.query().whereBetween('created_at', [yesterday, now])
+        return response.status(200).json({ now, yesterday, date })
     }
 }

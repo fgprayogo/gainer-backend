@@ -25,7 +25,7 @@ export default class PublicChatsController {
                     .from('public_chats')
                     .count('* as total')
 
-                if (chats[0].total > 100) {
+                if (chats[0].total > 10000) {
                     const old_chat = await PublicChat.first()
                     await old_chat?.delete()
                 }
