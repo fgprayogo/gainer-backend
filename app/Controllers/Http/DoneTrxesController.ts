@@ -29,9 +29,14 @@ export default class DoneTrxesController {
                     buyer_addr: prevTrx.args.buyerAddr
                 }
                 try {
-                    const data = await DoneTrxGainerOne.findByOrFail("trx_hash", listing.trx_hash)
-                    if (data.seller_addr !== listing.seller_addr && data.trx_hash !== listing.trx_hash) {
+                    // const data = await DoneTrxGainerOne.findByOrFail("trx_hash", listing.trx_hash)
+                    // if (data.seller_addr !== listing.seller_addr && data.trx_hash !== listing.trx_hash) {
+                    //     await DoneTrxGainerOne.create(listing);
+                    // }
+                    const data = await DoneTrxGainerOne.query().where("trx_hash", listing.trx_hash).andWhere("seller_addr", listing.seller_addr)
+                    if (!data) {
                         await DoneTrxGainerOne.create(listing);
+
                     }
                 } catch (error) {
                     await DoneTrxGainerOne.create(listing);
@@ -41,11 +46,6 @@ export default class DoneTrxesController {
 
         }
         const done_trx_gainer_one = await DoneTrxGainerOne.query().limit(10).orderBy('block_number', 'desc')
-        done_trx_gainer_one.reverse()
-        if (done_trx_gainer_one[0].ampunt == 0) {
-            done_trx_gainer_one.pop(0)
-        }
-        done_trx_gainer_one.reverse()
         return response.status(200).json({ done_trx_gainer_one })
     }
     public async fetchDoneTrxGainerFive({ response }: HttpContextContract) {
@@ -75,11 +75,6 @@ export default class DoneTrxesController {
 
         }
         const done_trx_gainer_five = await DoneTrxGainerFive.query().limit(10).orderBy('block_number', 'desc')
-        done_trx_gainer_five.reverse()
-        if (done_trx_gainer_five[0].ampunt == 0) {
-            done_trx_gainer_five.pop(0)
-        }
-        done_trx_gainer_five.reverse()
         return response.status(200).json({ done_trx_gainer_five })
     }
     public async fetchDoneTrxGainerTen({ response }: HttpContextContract) {
@@ -109,11 +104,6 @@ export default class DoneTrxesController {
 
         }
         const done_trx_gainer_ten = await DoneTrxGainerTen.query().limit(10).orderBy('block_number', 'desc')
-        done_trx_gainer_ten.reverse()
-        if (done_trx_gainer_ten[0].ampunt == 0) {
-            done_trx_gainer_ten.pop(0)
-        }
-        done_trx_gainer_ten.reverse()
         return response.status(200).json({ done_trx_gainer_ten })
     }
     public async tradingVolume24Hour({ response }: HttpContextContract) {

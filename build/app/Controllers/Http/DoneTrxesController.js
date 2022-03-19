@@ -29,8 +29,8 @@ class DoneTrxesController {
                     buyer_addr: prevTrx.args.buyerAddr
                 };
                 try {
-                    const data = await DoneTrxGainerOne_1.default.findByOrFail("trx_hash", listing.trx_hash);
-                    if (data.seller_addr !== listing.seller_addr && data.trx_hash !== listing.trx_hash) {
+                    const data = await DoneTrxGainerOne_1.default.query().where("trx_hash", listing.trx_hash).andWhere("seller_addr", listing.seller_addr);
+                    if (!data) {
                         await DoneTrxGainerOne_1.default.create(listing);
                     }
                 }
@@ -42,11 +42,6 @@ class DoneTrxesController {
         catch (error) {
         }
         const done_trx_gainer_one = await DoneTrxGainerOne_1.default.query().limit(10).orderBy('block_number', 'desc');
-        done_trx_gainer_one.reverse();
-        if (done_trx_gainer_one[0].ampunt == 0) {
-            done_trx_gainer_one.pop(0);
-        }
-        done_trx_gainer_one.reverse();
         return response.status(200).json({ done_trx_gainer_one });
     }
     async fetchDoneTrxGainerFive({ response }) {
@@ -77,11 +72,6 @@ class DoneTrxesController {
         catch (error) {
         }
         const done_trx_gainer_five = await DoneTrxGainerFive_1.default.query().limit(10).orderBy('block_number', 'desc');
-        done_trx_gainer_five.reverse();
-        if (done_trx_gainer_five[0].ampunt == 0) {
-            done_trx_gainer_five.pop(0);
-        }
-        done_trx_gainer_five.reverse();
         return response.status(200).json({ done_trx_gainer_five });
     }
     async fetchDoneTrxGainerTen({ response }) {
@@ -112,11 +102,6 @@ class DoneTrxesController {
         catch (error) {
         }
         const done_trx_gainer_ten = await DoneTrxGainerTen_1.default.query().limit(10).orderBy('block_number', 'desc');
-        done_trx_gainer_ten.reverse();
-        if (done_trx_gainer_ten[0].ampunt == 0) {
-            done_trx_gainer_ten.pop(0);
-        }
-        done_trx_gainer_ten.reverse();
         return response.status(200).json({ done_trx_gainer_ten });
     }
     async tradingVolume24Hour({ response }) {
