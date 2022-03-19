@@ -42,6 +42,9 @@ class DoneTrxesController {
         catch (error) {
         }
         const done_trx_gainer_one = await DoneTrxGainerOne_1.default.query().limit(10).orderBy('block_number', 'desc');
+        if (done_trx_gainer_one[0].ampunt == 0) {
+            done_trx_gainer_one.pop(0);
+        }
         return response.status(200).json({ done_trx_gainer_one });
     }
     async fetchDoneTrxGainerFive({ response }) {
@@ -72,6 +75,9 @@ class DoneTrxesController {
         catch (error) {
         }
         const done_trx_gainer_five = await DoneTrxGainerFive_1.default.query().limit(10).orderBy('block_number', 'desc');
+        if (done_trx_gainer_five[0].ampunt == 0) {
+            done_trx_gainer_five.pop(0);
+        }
         return response.status(200).json({ done_trx_gainer_five });
     }
     async fetchDoneTrxGainerTen({ response }) {
@@ -103,6 +109,9 @@ class DoneTrxesController {
         catch (error) {
         }
         const done_trx_gainer_ten = await DoneTrxGainerTen_1.default.query().limit(10).orderBy('block_number', 'desc');
+        if (done_trx_gainer_ten[0].ampunt == 0) {
+            done_trx_gainer_ten.pop(0);
+        }
         return response.status(200).json({ done_trx_gainer_ten });
     }
     async tradingVolume24Hour({ response }) {
