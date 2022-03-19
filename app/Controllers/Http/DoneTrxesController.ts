@@ -41,9 +41,11 @@ export default class DoneTrxesController {
 
         }
         const done_trx_gainer_one = await DoneTrxGainerOne.query().limit(10).orderBy('block_number', 'desc')
+        done_trx_gainer_one.reverse()
         if (done_trx_gainer_one[0].ampunt == 0) {
             done_trx_gainer_one.pop(0)
         }
+        done_trx_gainer_one.reverse()
         return response.status(200).json({ done_trx_gainer_one })
     }
     public async fetchDoneTrxGainerFive({ response }: HttpContextContract) {
@@ -73,13 +75,14 @@ export default class DoneTrxesController {
 
         }
         const done_trx_gainer_five = await DoneTrxGainerFive.query().limit(10).orderBy('block_number', 'desc')
+        done_trx_gainer_five.reverse()
         if (done_trx_gainer_five[0].ampunt == 0) {
             done_trx_gainer_five.pop(0)
         }
+        done_trx_gainer_five.reverse()
         return response.status(200).json({ done_trx_gainer_five })
     }
     public async fetchDoneTrxGainerTen({ response }: HttpContextContract) {
-        ;
         try {
             const last_block = await DoneTrxGainerTen.query().limit(1).orderBy('block_number', 'desc')
             const last_block_number = last_block[0].block_number;
@@ -106,9 +109,11 @@ export default class DoneTrxesController {
 
         }
         const done_trx_gainer_ten = await DoneTrxGainerTen.query().limit(10).orderBy('block_number', 'desc')
+        done_trx_gainer_ten.reverse()
         if (done_trx_gainer_ten[0].ampunt == 0) {
             done_trx_gainer_ten.pop(0)
         }
+        done_trx_gainer_ten.reverse()
         return response.status(200).json({ done_trx_gainer_ten })
     }
     public async tradingVolume24Hour({ response }: HttpContextContract) {
