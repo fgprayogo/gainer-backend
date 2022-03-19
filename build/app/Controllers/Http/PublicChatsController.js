@@ -27,7 +27,7 @@ class PublicChatsController {
                 const chats = await Database_1.default
                     .from('public_chats')
                     .count('* as total');
-                if (chats[0].total > 100) {
+                if (chats[0].total > 10000) {
                     const old_chat = await PublicChat_1.default.first();
                     await old_chat?.delete();
                 }

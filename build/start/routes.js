@@ -32,5 +32,6 @@ Route_1.default.group(() => {
     Route_1.default.get('/gainer-one', 'DoneTrxesController.fetchDoneTrxGainerOne');
     Route_1.default.get('/gainer-five', 'DoneTrxesController.fetchDoneTrxGainerFive');
     Route_1.default.get('/gainer-ten', 'DoneTrxesController.fetchDoneTrxGainerTen');
+    Route_1.default.get('/trading-volume-24hr', 'DoneTrxesController.tradingVolume24Hour');
 }).prefix('/api/done-trx');
 //# sourceMappingURL=routes.js.map

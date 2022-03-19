@@ -17,7 +17,6 @@ const databaseConfig = {
                 database: Env_1.default.get('MYSQL_DB_NAME'),
             },
             migrations: {
-                disableRollbacksInProduction: true,
                 naturalSort: true
             },
             healthCheck: false,
