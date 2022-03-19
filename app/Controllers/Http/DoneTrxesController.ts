@@ -17,8 +17,6 @@ export default class DoneTrxesController {
             const last_block = await DoneTrxGainerOne.query().limit(1).orderBy('block_number', 'desc')
             const last_block_number = last_block[0].block_number;
             const prevTrxs = await gainerMarketplaceContract.queryFilter("DoneTrxGainerOne", last_block_number, 'latest');
-            console.log(prevTrxs)
-
             for (let prevTrx of prevTrxs) {
                 var listing = {
                     block_number: Number(prevTrx.blockNumber),
@@ -28,17 +26,8 @@ export default class DoneTrxesController {
                     amount: Number(prevTrx.args.amount),
                     buyer_addr: prevTrx.args.buyerAddr
                 }
-                try {
-                    // const data = await DoneTrxGainerOne.findByOrFail("trx_hash", listing.trx_hash)
-                    // if (data.seller_addr !== listing.seller_addr && data.trx_hash !== listing.trx_hash) {
-                    //     await DoneTrxGainerOne.create(listing);
-                    // }
-                    const data = await DoneTrxGainerOne.query().where("trx_hash", listing.trx_hash).andWhere("seller_addr", listing.seller_addr)
-                    if (!data) {
-                        await DoneTrxGainerOne.create(listing);
-
-                    }
-                } catch (error) {
+                const data = await DoneTrxGainerOne.query().where("trx_hash", listing.trx_hash).andWhere("seller_addr", listing.seller_addr)
+                if (data.length == 0) {
                     await DoneTrxGainerOne.create(listing);
                 }
             }
@@ -62,12 +51,8 @@ export default class DoneTrxesController {
                     amount: Number(prevTrx.args?.amount),
                     buyer_addr: prevTrx.args?.buyerAddr
                 }
-                try {
-                    const data = await DoneTrxGainerFive.findByOrFail("trx_hash", listing.trx_hash)
-                    if (data.seller_addr !== listing.seller_addr && data.trx_hash !== listing.trx_hash) {
-                        await DoneTrxGainerFive.create(listing);
-                    }
-                } catch (error) {
+                const data = await DoneTrxGainerFive.query().where("trx_hash", listing.trx_hash).andWhere("seller_addr", listing.seller_addr)
+                if (data.length == 0) {
                     await DoneTrxGainerFive.create(listing);
                 }
             }
@@ -91,12 +76,8 @@ export default class DoneTrxesController {
                     amount: Number(prevTrx.args?.amount),
                     buyer_addr: prevTrx.args?.buyerAddr
                 }
-                try {
-                    const data = await DoneTrxGainerTen.findByOrFail("trx_hash", listing.trx_hash)
-                    if (data.seller_addr !== listing.seller_addr && data.trx_hash !== listing.trx_hash) {
-                        await DoneTrxGainerTen.create(listing);
-                    }
-                } catch (error) {
+                const data = await DoneTrxGainerTen.query().where("trx_hash", listing.trx_hash).andWhere("seller_addr", listing.seller_addr)
+                if (data.length == 0) {
                     await DoneTrxGainerTen.create(listing);
                 }
             }
